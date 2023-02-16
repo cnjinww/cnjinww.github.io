@@ -1,80 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>关于我</title>
-    <base target="_blank">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="HTML5VisualizationPlayer">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HTML5 可视化音乐播放器</title>
+        <link type="text/css" rel="stylesheet" href="css/main.css">
+        <link type="text/css" rel="stylesheet" href="css/player.css">
+        <link rel="Shortcut Icon" href="images/icon.png">
+        <script src="js/player.js" type="text/javascript"></script>
+    </head>
 
-<body background="">
-    <table border="1" align="center" cellspacing="0" cellpadding="10" width="800" height="70">
-        <tr>
-            <th colspan="7" bgcolor="BuryWood">
-                我的个人简介
-            </th>
-        </tr>
-        <tr>
-            <th>姓名:</th>
-            <td>XXX</td>
-            <th>年龄:</th>
-            <td>20</td>
-            <th>民族:</th>
-            <td>汉</td>
-            <td rowspan="3"><img src="img/1596854744930.jpg" height="125" width="75"></td>
-        </tr>
-        <tr>
-            <th>出生日期:</th>
-            <td>19970000</td>
-            <th>政治面貌:</th>
-            <td>团员</td>
-            <th>学历:</th>
-            <td>本科</td>
-        </tr>
-        <tr>
-            <th>专业:</th>
-            <td>XXX</td>
-            <th>毕业学校:</th>
-            <td>XXX</td>
-            <th>邮编:</th>
-            <td>XXX</td>
-
-        </tr>
-        <tr>
-            <th>爱好:</th>
-            <td>玩,拆,装</td>
-            <th>XX:</th>
-            <td>XX</td>
-            <th>邮箱:</th>
-            <td colspan="2">XXX</a></td>
-        </tr>
-        <tr>
-            <th>个人特长:</th>
-            <td colspan="6">
-                <p>我爱计算机 我爱计算机我爱计算机 我爱计算机我爱计算机 我爱计算机</p>
-                <p>我爱计算机 我爱计算机我爱计算机 我爱计算机我爱计算机 我爱计算机</p>
-                <p>我爱计算机 我爱计算机我爱计算机 我爱计算机我爱计算机 我爱计算机</p>
-            </td>
-        </tr>
-        <tr>
-            <th>自我介绍:</th>
-            <td colspan="6">
-                <p>XXX，我爱计算机</p>
-                <p>XXX，我爱计算机</p>
-                <p>XXX，我爱计算机</p>
-            </td>
-        </tr>
-        <tr>
-            <th>总结:</th>
-            <td colspan="6">
-                <p>XXX，我爱计算机</p>
-                <p>XXX，我爱计算机</p>
-                <p>XXX，我爱计算机</p>
-            </td>
-        </tr>
-    </table>
-</body>
+    <body>
+        <div class="play-box">
+            <player></player>
+            <div class="player-tips"></div>
+        </div>
+    </body>
+    <script type="text/javascript">
+        var player = new Player();
+        player.init({
+            autoPlay: true,//自动播放
+            effect: 0,//频谱效果,不设置或0为随机变化,1为条形柱状,2为环状声波,3 心电图效果
+            color: null,//颜色 color:16进制颜色代码,不设置或设置为空(空字符或null)将随机使用默认颜色
+            button: {//设置生成的控制按钮,不设置button默认全部创建
+                prev: true,//上一首
+                play: true,//播放,暂停
+                next: true,//下一首
+                volume: true,//音量
+                progressControl: true,//是否开启进度控制
+            },
+            event: function (e) {
+                //这是一个事件方法,点击控制按钮会到此方法
+                //参数:e.eventType 事件类型
+                //参数:e.describe 事件详情,或参数
+                //e.eventType  prev: 点击上一首,next：点击下一首,play:点击 播放/暂停
+                console.log(e);
+            },
+            energy: function (value) {
+                //此时播放的能量值,时刻变化
+                //console.log(value);
+            },
+            playList: [//播放列表
+                {
+                    title: "Kandy",//音乐标题
+                    album: "",//所属专辑
+                    artist: "",//艺术家
+                    mp3: "music/Kandy.mp3",//音乐路径
+                },
+                {
+                    title: "Paper Gangsta",//音乐标题
+                    album: "",//所属专辑
+                    artist: "",//艺术家
+                    mp3: "music/PaperGangsta.mp3",//音乐路径
+                },
+            ]
+        });
+    </script>
 
 </html>
